@@ -1,20 +1,24 @@
 {
-  "name": "pi-token-stats",
-  "version": "1.0.0",
-  "description": "Token usage summary for pi sessions — per-session totals, averages, and last-active date",
-  "keywords": ["pi-package"],
-  "type": "module",
-  "license": "MIT",
-  "author": "",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/YOURNAME/pi-token-stats.git"
-  },
-  "pi": {
-    "extensions": ["./index.ts"]
-  },
-  "peerDependencies": {
-    "@mariozechner/pi-coding-agent": "*",
-    "@mariozechner/pi-tui": "*"
-  }
+    "name": "pi-token-stats",
+    "version": "1.0.0",
+    "description": "Token usage summary for pi sessions — per-session totals, averages, and last-active date",
+    "keywords": [
+        "pi-package"
+    ],
+    "type": "module",
+    "license": "MIT",
+    "author": "",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dheerapat/pi-token-stats.git"
+    },
+    "pi": {
+        "extensions": [
+            "./index.ts"
+        ]
+    },
+    "peerDependencies": {
+        "@mariozechner/pi-coding-agent": "*",
+        "@mariozechner/pi-tui": "*"
+    }
 }
