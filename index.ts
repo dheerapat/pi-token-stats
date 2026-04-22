@@ -104,6 +104,10 @@ function fmtDate(d: Date | null): string {
 	return d.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
 }
 
+function sanitize(str: string): string {
+	return str.replace(/\r?\n/g, " ").trim();
+}
+
 function trunc(str: string, len: number): string {
 	if (str.length <= len) return str;
 	return str.slice(0, len - 1) + "…";
@@ -134,7 +138,8 @@ function buildReport(rows: SessionRow[], total: UsageStats, avg: UsageStats): st
 	lines.push(sep);
 
 	for (const r of rows) {
-		const name = trunc(r.info.name || r.info.firstMessage || r.info.id.slice(0, 8), cName);
+		const rawName = sanitize(r.info.name || r.info.firstMessage || r.info.id.slice(0, 8));
+		const name = trunc(rawName, cName);
 		lines.push(
 			`${name.padEnd(cName)}  ${fmtDate(r.lastInteraction).padStart(cDate)}  ${String(r.info.messageCount).padStart(cMsgs)}  ${fmtNum(r.stats.input).padStart(cIn)}  ${fmtNum(r.stats.output).padStart(cOut)}  ${fmtNum(r.stats.cacheRead).padStart(cCache)}  ${fmtNum(r.stats.totalTokens).padStart(cTot)}  ${fmtCost(r.stats.cost).padStart(cCost)}`,
 		);
