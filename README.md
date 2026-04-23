@@ -11,13 +11,13 @@ This extension helps you understand your consumption patterns across sessions â€
 ## Install
 
 ```bash
-pi install git:github.com/YOURNAME/pi-token-stats
+pi install git:github.com/dheerapat/pi-token-stats
 ```
 
 Or test without installing:
 
 ```bash
-pi -e git:github.com/YOURNAME/pi-token-stats
+pi -e git:github.com/dheerapat/pi-token-stats
 ```
 
 ## Usage
