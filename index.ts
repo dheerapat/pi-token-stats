@@ -7,10 +7,10 @@
  * Philosophy: "For this session to finish/complete a task, how many tokens did I use?"
  */
 
-import type { ExtensionAPI, SessionInfo } from "@mariozechner/pi-coding-agent";
-import { SessionManager } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI, SessionInfo } from "@earendil-works/pi-coding-agent";
+import { SessionManager } from "@earendil-works/pi-coding-agent";
 import { readFile } from "node:fs/promises";
-import { matchesKey } from "@mariozechner/pi-tui";
+import { matchesKey } from "@earendil-works/pi-tui";
 
 interface UsageStats {
     input: number;
@@ -149,8 +149,12 @@ function buildReport(
     const sep = "─".repeat(sepLen);
     const sepThin = "─".repeat(sepLen);
 
+    const maxDisplay = 10;
+    const displayRows = rows.slice(0, maxDisplay);
+    const truncated = rows.length > maxDisplay;
+
     lines.push(
-        `Token Usage Summary — ${rows.length} session${rows.length === 1 ? "" : "s"}`,
+        `Token Usage Summary — ${rows.length} session${rows.length === 1 ? "" : "s"}${truncated ? ` (showing last ${maxDisplay})` : ""}`,
     );
     lines.push("");
     lines.push(
@@ -158,7 +162,7 @@ function buildReport(
     );
     lines.push(sep);
 
-    for (const r of rows) {
+    for (const r of displayRows) {
         const rawName = sanitize(
             r.info.name || r.info.firstMessage || r.info.id.slice(0, 8),
         );
